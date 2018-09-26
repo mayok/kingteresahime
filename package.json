@@ -1,12 +1,12 @@
 {
-  "name": "kingteresahime",
+  "name": "princesskingboo",
   "version": "1.0.0",
   "scripts": {
     "watch": "node-sass -w style.scss style.css"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mayok/kingteresahime.git"
+    "url": "git+https://github.com/mayok/princesskingboo.git"
   },
   "author": "Naohiro Iwamoto",
   "license": "MIT",
