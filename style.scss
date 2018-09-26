@@ -1,0 +1,445 @@
+$hair: #f5f5f5;
+$s-width: 300px;
+$s-height: 370px;
+$m-width: 360px;
+$m-height: 440px;
+$l-width: 480px;
+$l-height: 640px;
+
+$crown: #fde800;
+$crown-width: 30px;
+$crown-height: 50px;
+
+$crownmash: pink;
+$crownmash-width: 40px;
+$crownmash-height: 30px;
+
+$crowneye: black;
+$crowneye-width: 2px;
+$crowneye-height: 6px;
+
+$eye: rgb(255, 142, 142);
+$eye-width: 35px;
+$eye-height: $eye-width;
+
+$eyebrow: darken($hair, 6%);
+$ebrow-width: 60px;
+$ebrow-height: 10px;
+$ebrow-border: 3px;
+
+$cheek: #f2d5cc;
+$cheek-height: $eye-height / 6;
+$cheek-width: 3px;
+
+$mouth: lighten(rgb(235, 192, 255), 6%);
+$mouth-width: 60px;
+$mouth-height: 80px;
+
+$fang: white;
+$fang-width: 10px;
+$fang-height: 15px;
+
+$hand: $eyebrow;
+$hand-width: 30px;
+$hand-height: calc(#{$hand-width} * 2);
+$hand-border: 4px;
+
+@mixin crown($v: 1) {
+  position: absolute;
+  top: 26%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  z-index: 10;
+
+  @if $v == 1 {
+    left: 42.5%;
+    border-width: 0;
+    border-width: $crown-height 0 0 $crown-width;
+    border-color: transparent transparent transparent $crown;
+    transform: rotate(-6deg);
+  } @else if $v == 2 {
+    top: 27%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    border-width: 0
+      calc(#{$crown-width / 2})
+      calc(#{$crown-height / 2 * 1.73205})
+      calc(#{$crown-width / 2});
+    border-color: transparent transparent $crown transparent;
+  } @else {
+    right: 42.5%;
+    border-width: 0 0 $crown-height $crown-width;
+    border-color: transparent transparent $crown transparent;
+    transform: rotate(6deg);
+  }
+
+  @media (min-width: 480px) {
+    top: 20%;
+    @if $v == 1 {
+      left: 44.5%;
+    } @else if $v == 2 {
+      top: 21%;
+    } @else {
+      right: 44.5%;
+    }
+  }
+}
+@mixin crowneye($position: left) {
+  position: absolute;
+  top: 33.2%;
+  width: $crowneye-width;
+  height: $crowneye-height;
+  background: $crowneye;
+  z-index: 20;
+  @if $position == left {
+    left: 47%;
+  } @else {
+    right: 47%;
+  }
+
+  @media (min-width: 480px) {
+    top: 25.2%;
+    @if $position == left {
+      left: 48.5%;
+    } @else {
+      right: 48.5%;
+    }
+  }
+}
+
+@mixin crownmash() {
+  position: absolute;
+  top: 28.5%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: calc(#{$crownmash-width} - 4px);
+  height: $crownmash-height;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  background: $crownmash;
+  z-index: 5;
+  @media (min-width: 480px) {
+    top: 22%;
+    width: $crownmash-width;
+  }
+}
+
+@mixin eyes($position: left) {
+  position: absolute;
+  top: 53%;
+  width: $eye-width;
+  height: $eye-height;
+  background: $eye;
+  border-radius: calc(#{$eye-width} / 2);
+  @if $position == left {
+    left: 24%;
+  } @else {
+    right: 24%;
+  }
+
+  @media (min-width: 480px) {
+    top: 41%;
+    @if $position == left {
+      left: 32%;
+    } @else {
+      right: 32%;
+    }
+  }
+}
+@mixin eyebrows($position: left) {
+  position: absolute;
+  top: 48%;
+  width: $ebrow-width;
+  height: $ebrow-height;
+  background: $hair;
+  border-style: solid;
+  border-width: $ebrow-border;
+
+  @if $position == left {
+    left: 18%;
+    border-bottom-right-radius: 100%;
+    border-color: transparent $eyebrow transparent transparent;
+    transform: rotate(20deg);
+  } @else {
+    right: 18%;
+    border-bottom-left-radius: 100%;
+    border-color: transparent transparent transparent $eyebrow;
+    transform: rotate(-20deg);
+  }
+
+  @media (min-width: 480px) {
+    top: 38%;
+    @if $position == left {
+      left: 29.5%;
+    } @else {
+      right: 29.5%;
+    }
+  }
+}
+@mixin cheeks($p: left, $v: 18%) {
+  position: absolute;
+  top: 63%;
+  width: $cheek-width;
+  height: $cheek-height;
+  background: $cheek;
+  transform: skewX(-30deg);
+
+  @if $p == left {
+    left: calc(#{$v} - 1%);
+  } @else {
+    right: calc(#{$v} - 1%);
+  }
+  @media (min-width: 480px) {
+    top: 48%;
+    @if $p == left {
+      left: calc(#{$v} + 5%);
+    } @else {
+      right: calc(#{$v} + 5%);
+    }
+  }
+}
+
+@mixin mouth() {
+  position: absolute;
+  top: 66%;
+  width: $mouth-width;
+  height: calc(#{$mouth-height} - 10px);
+  background: $mouth;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border-top-left-radius: 4%;
+  border-top-left-radius: 4%;
+  border-bottom-left-radius: 40%;
+  border-bottom-right-radius: 40%;
+  @media (min-width: 480px) {
+    top: 50%;
+    height: $mouth-height;
+  }
+}
+
+@mixin fangs($position: left, $v: 0%) {
+  position: absolute;
+  top: 0%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: $fang-height $fang-width 0 $fang-width;
+  border-color: $fang transparent transparent transparent;
+
+  @if $position == left {
+    left: $v;
+  } @else {
+    right: $v;
+  }
+}
+
+@mixin hands($position: left) {
+  position: absolute;
+  top: 68%;
+  width: $hand-width;
+  height: $hand-height;
+  border-style: solid;
+  border-width: $hand-border;
+  @if $position == left {
+    left: -3%;
+    border-bottom-right-radius: 100%;
+    border-color: transparent $hand transparent transparent;
+    transform: rotate(-2deg) skewY(-10deg);
+  } @else {
+    right: -3%;
+    border-bottom-left-radius: 100%;
+    border-color: transparent transparent transparent $hand;
+    transform: rotate(2deg) skewY(10deg);
+  }
+  @media (min-width: 480px) {
+    top: 55%;
+    @if $position == left {
+      left: 10%;
+    } @else {
+      right: 10%;
+    }
+  }
+}
+@mixin __hands($position: left) {
+  content: "";
+  position: absolute;
+  bottom: calc(-1 * #{$hand-border});
+  width: calc(#{$hand-width} * 2);
+  height: $hand-border;
+  background: $hand;
+  @if $position == left {
+    left: 0;
+    transform: rotate(8deg) skewY(-10deg);
+  } @else {
+    right: 0;
+    transform: rotate(-8deg) skewY(10deg);
+  }
+}
+
+@mixin _hands($position: left) {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  background: $hair;
+}
+
+.teresa {
+  position: relative;
+  width: $s-width;
+  height: $s-height;
+  margin: 0 auto;
+}
+@media (min-width: 300px) and (min-height: 600px) {
+  .teresa {
+    height: $m-height;
+  }
+}
+@media (min-width: 480px) {
+  .teresa {
+    width: $l-width;
+    height: $l-height;
+  }
+}
+
+.crown {
+  .mash {
+    @include crownmash();
+  }
+  .crown1 {
+    @include crown(1);
+  }
+  .crown2 {
+    @include crown(2);
+  }
+  .crown3 {
+    @include crown(3);
+  }
+  .eye1 {
+    @include crowneye(left);
+  }
+  .eye2 {
+    @include crowneye(right);
+  }
+}
+
+.eyes {
+  .left {
+    @include eyes(left);
+  }
+  .right {
+    @include eyes(right);
+  }
+}
+.eyebrows {
+  .left {
+    @include eyebrows(left);
+  }
+  .right {
+    @include eyebrows(right);
+  }
+}
+.cheeks {
+  .left1 {
+    @include cheeks(left, 22%);
+  }
+  .left2 {
+    @include cheeks(left, 24%);
+  }
+  .left3 {
+    @include cheeks(left, 27%);
+  }
+  .left4 {
+    @include cheeks(left, 29%);
+  }
+
+  .right1 {
+    @include cheeks(right, 31%);
+  }
+  .right2 {
+    @include cheeks(right, 29%);
+  }
+  .right3 {
+    @include cheeks(right, 26%);
+  }
+  .right4 {
+    @include cheeks(right, 24%);
+  }
+}
+
+.mouth {
+  @include mouth();
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10px;
+    margin: 0 auto;
+    width: 2px;
+    height: calc(#{$mouth-height / 1.5});
+    opacity: 0.9;
+    // background: darken($mouth, 20%);
+    background-image: linear-gradient(darken($mouth, 12%) 80%, $mouth);
+  }
+}
+
+.fang1 {
+  @include fangs(left, 0%);
+}
+.fang2 {
+  @include fangs(left, 18%);
+}
+.fang3 {
+  @include fangs(right, 0%);
+}
+.fang4 {
+  @include fangs(right, 20%);
+}
+
+.hands {
+  .left {
+    @include hands(left);
+
+    &:after {
+      @include __hands(left);
+    }
+  }
+
+  .right {
+    @include hands(right);
+
+    &:after {
+      @include __hands(right);
+    }
+  }
+}
+
+.teresatere {
+  display: none;
+  position: relative;
+  width: $s-width;
+  height: 100vh;
+  margin: 0 auto;
+}
+@media (min-width: 480px) {
+  .teresa {
+    width: $l-width;
+  }
+}

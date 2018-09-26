@@ -1,0 +1,16 @@
+{
+  "name": "kingteresahime",
+  "version": "1.0.0",
+  "scripts": {
+    "watch": "node-sass -w style.scss style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mayok/kingteresahime.git"
+  },
+  "author": "Naohiro Iwamoto",
+  "license": "MIT",
+  "devDependencies": {
+    "node-sass": "^4.9.3"
+  }
+}
